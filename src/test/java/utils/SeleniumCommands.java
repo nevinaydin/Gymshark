@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import stepdefs.hooks.Hooks;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.function.Function;
 
 public class SeleniumCommands {
@@ -26,8 +27,16 @@ public class SeleniumCommands {
     return until(ExpectedConditions.visibilityOfElementLocated(selector));
   }
 
+  public List<WebElement> waitForAndGetAllVisibleElementsLocated(By selector) {
+    return until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
+  }
+
   public WebElement waitForElementToBeClickableLocated(By selector) {
     return until(ExpectedConditions.elementToBeClickable(selector));
+  }
+
+  public String getAttributeFromElement(WebElement element, String attribute) {
+    return element.getAttribute(attribute);
   }
 
   private WebDriverWait defaultWait() {
