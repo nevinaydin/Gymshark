@@ -12,7 +12,7 @@ import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 
 public class ProductStepDefs {
 
-  private WebDriver driver;
+  private final WebDriver driver;
 
   public ProductStepDefs(){
     this.driver = Hooks.getDriver();
@@ -33,6 +33,6 @@ public class ProductStepDefs {
   @Then("the product should appear in the Bag")
   public void theProductShouldAppearInTheBag() {
     BagPage bagPage = new BagPage();
-    assertThat(bagPage.)
+//    assertThat(bagPage.)
   }
 }
