@@ -11,25 +11,26 @@ import static utils.StringUtils.extractVariantIDFromString;
 
 public class BagPage {
 
-  private static final By BAG_PAGE = By.cssSelector("[data-locator-id='miniBag-component']");
-  private static final By BAG_ITEMS = By.cssSelector("[data-locator-id^='miniBag-miniBagItem']");
-  public static final String GS_LOCATOR_ATTRIBUTE = "data-locator-id";
+    private static final By BAG_PAGE = By.cssSelector("[data-locator-id='miniBag-component']");
+    private static final By BAG_ITEMS = By.cssSelector("[data-locator-id^='miniBag-miniBagItem']");
+    public static final String GS_LOCATOR_ATTRIBUTE = "data-locator-id";
 
-  public BagPage() {
-    getCommands().waitForAndGetVisibleElementLocated(BAG_PAGE);
-  }
+    public BagPage() {
+        getCommands().waitForAndGetVisibleElementLocated(BAG_PAGE);
+    }
 
-  public List<Long> getVariantIdsInBag() {
-    return getBagItems().stream()
-      .map(this::getVariantId)
-      .collect(Collectors.toList());
-  }
+    public List<Long> getVariantIdsInBag() {
+        return getBagItems().stream()
+                .map(this::getVariantId)
+                .collect(Collectors.toList());
+    }
 
-  private List<WebElement> getBagItems() {
-    return getCommands().waitForAndGetAllVisibleElementsLocated(BAG_ITEMS);
-  }
+    private List<WebElement> getBagItems() {
 
-  private long getVariantId(WebElement bagItem) {
-    return extractVariantIDFromString(getCommands().getAttributeFromElement(bagItem, GS_LOCATOR_ATTRIBUTE));
-  }
+        return getCommands().waitForAndGetAllVisibleElementsLocated(BAG_ITEMS);
+    }
+
+    private long getVariantId(WebElement bagItem) {
+        return extractVariantIDFromString(getCommands().getAttributeFromElement(bagItem, GS_LOCATOR_ATTRIBUTE));
+    }
 }

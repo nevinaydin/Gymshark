@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import stepdefs.hooks.Hooks;
 
@@ -47,6 +48,19 @@ public class SeleniumCommands {
     return defaultWait().until(expectedCondition);
   }
 
+  public void selectDropDown(By selector, String value) {
+    Select select = new Select(waitForAndGetVisibleElementLocated(selector));
+    select.selectByValue(value);
+
+  }
+  public void selectDropDown(By selector, int index) {
+    Select select = new Select(waitForAndGetVisibleElementLocated(selector));
+    select.selectByIndex(index);
+
+  }
+  public String getTextFromElement(WebElement element) {
+    return element.getText();
+  }
   public static SeleniumCommands getCommands() {
     return instance;
   }
