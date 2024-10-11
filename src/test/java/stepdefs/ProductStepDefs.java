@@ -68,26 +68,12 @@ public class ProductStepDefs {
     String actualQuantityValue;
 
     @When("the user change the quantity to {string}")
-    public void theUserChangeTheQuantityTo(String valueQuantity) throws InterruptedException {
-        /*
+    public void theUserChangeTheQuantityTo(String valueQuantity) {
         ProductDisplayPage productDisplayPage = new ProductDisplayPage();
-        expectedQuantityValue = valueQuantity;
-        actualQuantityValue=productDisplayPage.selectDropDownByValue(valueQuantity);
-        productDisplayPage.selectDropDownByValue(valueQuantity);
-        System.out.println("expectedQuantityValue = " + expectedQuantityValue);
-        System.out.println("actualQuantityValue = " + actualQuantityValue);
-         */
-        /*ProductDisplayPage productDisplayPage = new ProductDisplayPage();
-        WebElement dropDown = driver.findElement(By.cssSelector("[aria-label='quantity selector']"));
-        Select select = new Select(dropDown);
-        select.selectByValue(valueQuantity);
-        expectedQuantityValue = valueQuantity;
-        actualQuantityValue=select.getFirstSelectedOption().getText();*/
-        ProductDisplayPage productDisplayPage = new ProductDisplayPage();
-        productDisplayPage.selectDropDownByValue(valueQuantity);
-
-
-
+        productDisplayPage.selectQuantityDropdown(valueQuantity);
+        expectedQuantityValue=valueQuantity;
+        actualQuantityValue = productDisplayPage.getQuantityDropdownValue(valueQuantity);
+        //System.out.println("actualQuantityValue = " + actualQuantityValue);
     }
 
     @Then("product quantity should be increased")
@@ -105,7 +91,7 @@ public class ProductStepDefs {
     @Then("product quantity should be removed from the bag")
     public void productQuantityShouldBeRemovedFromTheBag() {
         ProductDisplayPage productDisplayPage = new ProductDisplayPage();
-        System.out.println("productDisplayPage.getDeletedProductMessage() = " + productDisplayPage.getDeletedProductMessage());
+        //System.out.println("productDisplayPage.getDeletedProductMessage() = " + productDisplayPage.getDeletedProductMessage());
         assertThat(productDisplayPage.getDeletedProductMessage())
                 .as("Removed Element Message")
                 .isEqualTo("You removed an item from your bag.");
